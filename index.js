@@ -42,7 +42,6 @@ exports.rotateImage = (image, k) => {
     }
     k = k % 4;
     let n = image.length;
-    if (k === 0) return image;
     while (k > 0) {
         rotate90Degrees(image, n);
         k--;
@@ -77,16 +76,21 @@ exports.hotelReservation = (arrivals, departures, k) => {
     }
     let minArrival = utils.minOfArray(arrivals);
     let maxDeparture = utils.maxOfArray(departures);
+    // assume check-in is 2pm, check-out is 12pm so if user check-in on 2pm day 1 and check-out on 12pm day 2, he stays 1 night
     let numberOfNights = maxDeparture - minArrival;
     let remainingRooms = [];
+
+    // init remaining rooms for all night from minArrival to maxDeparture
     for (let i = 0; i < numberOfNights; i++) {
         remainingRooms[i] = k;
     }
+    // traverse all guest to adjust remaining rooms
     for (let i = 0; i < arrivals.length; i++) {
         let arrival = arrivals[i];
         let departure = departures[i];
-        for (let j = arrival - minArrival; j < departure - minArrival; j++) {
-            if (--remainingRooms[j] < 0) return false;
+        // adjust remaining rooms from arrival to departure
+        for (let j = arrival; j < departure; j++) {
+            if (--remainingRooms[j - minArrival] < 0) return false;
         }
     }
     return true;

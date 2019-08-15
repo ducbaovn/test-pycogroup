@@ -19,9 +19,7 @@ You can add more test case to 2 files ./test/rotateImage.js and ./test/hotelRese
 ## Complexity
 1. Rotate Image:
 - validate function: O(n^2)
-- main function:
-    * k is divisible by 4: O(1)
-    * k is not divisible by 4: O(n^2)
+- main function: O(n^2)
 - total: O(n^2)
 2. Hotel Reservation:
 - validate function: O(n)
