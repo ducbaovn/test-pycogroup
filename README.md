@@ -1,5 +1,5 @@
 # test-pycogroup
-This is a module with 2 function rotateImage and hotelReservation to solve 2 problem:
+This is a module with 2 function rotateImage and hotelReservation to solve 2 problems:
 #### 1. Rotate Image:
 A feature to rotate the photo on user request.
 For simplicity, let’s assume the photo to be 2D square grid n * n (rows * columns) and each pixel can store 8 bits values (ranging between 0 to 255)
@@ -20,10 +20,12 @@ You can add more test case to 2 files ./test/rotateImage.js and ./test/hotelRese
 1. Rotate Image:
 - validate function: O(n^2)
 - main function:
-    * k divisible by 4: O(1)
-    * k not divisible by 4: O(n^2)
-- summary: O(n^2)
+    * k is divisible by 4: O(1)
+    * k is not divisible by 4: O(n^2)
+- total: O(n^2)
 2. Hotel Reservation:
 - validate function: O(n)
+- minOfArray function: O(n)
+- maxOfArray function: O(n)
 - main function: O(m*n) with m = maxDeparture - minArrival
-- summary: O(m*n)
+- total: O(m*n)
