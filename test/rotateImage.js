@@ -76,14 +76,14 @@ describe('Test Excercises', function() {
         expect(() => excercises.rotateImage([[255]], 1)).not.to.throw("invalid parameters");
         expect(() => excercises.rotateImage([[1, 2], [3, 4]], 1)).not.to.throw("invalid parameters");
     });
-    it('should throw exception when image array invalid', function() {
+    it('should throw exception when input invalid image array', function() {
         expect(() => excercises.rotateImage(["a"])).to.throw("invalid parameters");
         expect(() => excercises.rotateImage([[-1]], 1)).to.throw("invalid parameters");
         expect(() => excercises.rotateImage([[256]], 1)).to.throw("invalid parameters");
         expect(() => excercises.rotateImage([[1, 2]], 1)).to.throw("invalid parameters");
         expect(() => excercises.rotateImage([[1, 2], [3, 4], [5, 6]], 1)).to.throw("invalid parameters");
     });
-    it('should throw exception when k invalid', function() {
+    it('should throw exception when input invalid k', function() {
         expect(() => excercises.rotateImage([1])).to.throw("invalid parameters");
         expect(() => excercises.rotateImage([[1]], "a")).to.throw("invalid parameters");
     });
