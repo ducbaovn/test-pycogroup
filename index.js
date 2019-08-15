@@ -1,3 +1,4 @@
+let utils = require("./utils");
 exports.rotateImage = (image, k) => {
     function validate(matrix, k) {
         if (!Array.isArray(matrix) || !Number.isInteger(k)) {
@@ -46,4 +47,47 @@ exports.rotateImage = (image, k) => {
         rotate90Degrees(image, n);
         k--;
     }
+}
+exports.hotelReservation = (arrivals, departures, k) => {
+    const MIN_DAY = 1;
+    const MAX_DAY = 100000; // ~300 years. We limit max day because of out of memory issue
+    const MAX_GUEST = 1e9; // 1 billion. We limit max guest because of out of memory issue
+    function validate(arrivals, departures, k) {
+        if (!Array.isArray(arrivals) || !Array.isArray(departures) || !Number.isInteger(k) || k < 0) {
+            return false;
+        }
+        var numberOfGuests = arrivals.length;
+        if (departures.length !== numberOfGuests || numberOfGuests > MAX_GUEST) {
+            return false;
+        }
+        for (let i = 0; i < arrivals.length; i++) {
+            if (!Number.isInteger(arrivals[i]) || !Number.isInteger(departures[i])) {
+                return false;
+            }
+            let arrival = arrivals[i];
+            let departure = departures[i];
+            if (arrival < MIN_DAY || arrival > MAX_DAY || departure < MIN_DAY || departure > MAX_DAY || arrival >= departure) {
+                return false
+            }
+        }
+        return true;
+    }
+    if (!validate(arrivals, departures, k)) {
+        throw new Error("invalid parameters");
+    }
+    let minArrival = utils.minOfArray(arrivals);
+    let maxDeparture = utils.maxOfArray(departures);
+    let numberOfNights = maxDeparture - minArrival;
+    let remainingRooms = [];
+    for (let i = 0; i < numberOfNights; i++) {
+        remainingRooms[i] = k;
+    }
+    for (let i = 0; i < arrivals.length; i++) {
+        let arrival = arrivals[i];
+        let departure = departures[i];
+        for (let j = arrival - minArrival; j < departure - minArrival; j++) {
+            if (--remainingRooms[j] < 0) return false;
+        }
+    }
+    return true;
 }
