@@ -55,7 +55,7 @@ exports.hotelReservation = (arrivals, departures, k) => {
         if (!Array.isArray(arrivals) || !Array.isArray(departures) || !Number.isInteger(k) || k < 0) {
             return false;
         }
-        var numberOfGuests = arrivals.length;
+        let numberOfGuests = arrivals.length;
         if (departures.length !== numberOfGuests || numberOfGuests > MAX_GUEST) {
             return false;
         }
@@ -66,7 +66,7 @@ exports.hotelReservation = (arrivals, departures, k) => {
             let arrival = arrivals[i];
             let departure = departures[i];
             if (arrival < MIN_DAY || arrival > MAX_DAY || departure < MIN_DAY || departure > MAX_DAY || arrival >= departure) {
-                return false
+                return false;
             }
         }
         return true;
